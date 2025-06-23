@@ -1,13 +1,10 @@
 # Firebase
 .env
 functions/.env
-.firebaserc
 node_modules/
 firebase-debug.log
-
 # Build
 public/dist/
 functions/dist/
-
 # Misc
 .DS_Store
