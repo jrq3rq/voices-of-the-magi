@@ -1,0 +1,272 @@
+body {
+  margin: 0;
+  font-family: 'Georgia', serif; /* Elegant serif for sacred feel */
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('images/starry-night.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: #e8d8a0; /* Creamy off-white text */
+  overflow-x: hidden;
+  line-height: 1.6; /* Improved readability */
+  min-height: 100vh; /* Ensure full viewport height */
+  display: flex; /* Use flexbox for centering */
+  justify-content: center; /* Horizontally center */
+  align-items: center; /* Vertically center */
+}
+
+.container {
+  max-width: 800px;
+  padding: 20px;
+  text-align: center;
+  border-radius: 15px;
+  background: rgba(20, 30, 50, 0.1); /* Darker blue overlay for depth */
+  width: 100%; /* Ensure it takes full available width up to max-width */
+  box-sizing: border-box; /* Include padding in width calculation */
+}
+
+h1 {
+  font-size: 2.5em; /* Slightly larger for emphasis */
+  margin-bottom: 25px;
+  font-weight: 700;
+  transition: transform 0.3s ease; /* Subtle hover effect */
+}
+h1:hover {
+  transform: scale(1.05);
+}
+
+.star-map {
+  position: relative;
+  height: 180px; /* Increased for better visual impact */
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><circle cx="50" cy="50" r="40" fill="%231e2a44"/><path d="M50 10 L60 40 L90 40 L65 55 L75 85 L50 70 L25 85 L35 55 L10 40 L40 40 Z" fill="%23e8d8a0" opacity="0.8"/></svg>') repeat;
+  margin-bottom: 25px;
+  animation: twinkle 8s infinite; /* Subtle animation */
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+
+.moon {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 50px; /* Slightly larger moon */
+  height: 50px;
+  background: radial-gradient(circle at 70% 30%, #e8d8a0, #d1b870); /* Soft gold gradient */
+  border-radius: 50%;
+  animation: glow 6s infinite alternate;
+}
+
+@keyframes glow {
+  0% { /* Removed shadow, keeping animation structure */ }
+  100% { /* Removed shadow, keeping animation structure */ }
+}
+
+.star {
+  position: absolute;
+  width: 6px; /* Slightly larger stars */
+  height: 6px;
+  background: radial-gradient(circle, #e8d8a0, #f5f5f5); /* Soft gold to white */
+  border-radius: 50%;
+  animation: twinkle 5s infinite alternate;
+}
+.star:nth-child(2) { top: 60px; left: 70px; }
+.star:nth-child(3) { top: 90px; left: 30px; }
+.star:nth-child(4) { top: 110px; right: 50px; }
+.star:nth-child(5) { top: 40px; right: 20px; } /* Added extra star */
+
+.magi-selector {
+  margin: 25px 0;
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Increased spacing for card separation */
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.magi-card {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.15),
+    rgba(255, 255, 255, 0)
+  );
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 2px solid #e8d8a0; /* Pale gold border */
+  border-radius: 10px;
+  width: 150px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.magi-card:hover {
+  transform: scale(1.05); /* Slight lift effect */
+  box-shadow: 0 6px 12px rgba(232, 216, 160, 0.4); /* Glow on hover */
+}
+.magi-card.selected {
+  transform: scale(1.05); /* Match hover effect */
+  box-shadow: 0 6px 12px rgba(232, 216, 160, 0.4); /* Match hover glow */
+}
+.magi-card[data-magi="melchior"] { border-color: #d1b870; } /* Muted gold */
+.magi-card[data-magi="melchior"] span { color: #d1b870; }
+.magi-card[data-magi="caspar"] { border-color: #4a704a; } /* Muted sage */
+.magi-card[data-magi="caspar"] span { color: #4a704a; }
+.magi-card[data-magi="balthazar"] { border-color: #a66b4a; } /* Soft terracotta */
+.magi-card[data-magi="balthazar"] span { color: #a66b4a; }
+
+.magi-card img {
+  max-width: 200px; /* Fixed max width to scale down */
+  max-height: 200px; /* Fixed max height to scale down */
+  width: auto; /* Preserve aspect ratio */
+  height: auto; /* Preserve aspect ratio */
+  border-radius: 50%; /* Circular frame */
+  margin-top: 10px; /* Fixed top positioning */
+}
+
+.magi-card span {
+  font-size: 1em; /* Slightly smaller for balance */
+  font-weight: 600;
+  color: #e8d8a0; /* Default creamy text */
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.chat-window {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.15),
+    rgba(255, 255, 255, 0)
+  );
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 2px solid #e8d8a0; /* Pale gold border */
+  border-radius: 15px;
+  padding: 25px;
+  max-height: 450px; /* Increased height */
+  overflow-y: auto;
+  margin-top: 25px;
+}
+
+.messages {
+  margin: 0; /* Remove bottom margin to keep latest at top */
+  text-align: left;
+  max-height: 350px; /* Adjusted for balance */
+  overflow-y: auto;
+  padding: 10px;
+  background: rgba(30, 40, 60, 0.5); /* Soft blue overlay */
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column-reverse; /* New messages at top */
+}
+
+.message {
+  padding: 8px 12px;
+  margin: 5px 0;
+  border-radius: 5px;
+  font-size: 0.95em;
+  color: #e8d8a0; /* Creamy text */
+  background: rgba(44, 54, 74, 0.8); /* Slightly darker chat bubble for king */
+}
+
+.user-message {
+  padding: 8px 12px;
+  margin: 5px 0;
+  border-radius: 5px;
+  font-size: 0.95em;
+  color: #000000; /* Black text for user */
+  background: rgba(232, 216, 160, 0.8); /* Lighter cream for user */
+}
+
+.input-area {
+  display: flex;
+  gap: 15px; /* More spacing */
+  align-items: center;
+  margin-top: 10px;
+}
+input[type="text"] {
+  flex-grow: 1;
+  padding: 12px;
+  border-radius: 8px;
+  background: #2a3545; /* Darker blue input */
+  color: #e8d8a0; /* Creamy text */
+  font-size: 1em;
+  transition: border-color 0.3s;
+}
+input[type="text"]:focus {
+  border-color: #d1b870; /* Muted gold */
+  outline: none;
+}
+button {
+  padding: 12px 25px;
+  border: none;
+  background: linear-gradient(45deg, #e8d8a0, #d1b870); /* Soft gold gradient */
+  color: #1a2535; /* Dark navy */
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+button:hover {
+  background: linear-gradient(45deg, #d1b870, #f0e4b0); /* Muted gold to cream */
+  transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .container {
+    margin: 10px;
+    padding: 15px;
+  }
+  h1 {
+    font-size: 1.8em;
+  }
+  .magi-selector {
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+  }
+  .magi-card {
+    width: 90%; /* Full width for mobile */
+    height: 200px; /* Adjusted proportions */
+    padding: 10px;
+  }
+  .magi-card img {
+    max-width: 150px; /* Smaller max width for mobile */
+    max-height: 150px; /* Smaller max height for mobile */
+    width: auto; /* Preserve aspect ratio */
+    height: auto; /* Preserve aspect ratio */
+    border-radius: 50%; /* Circular frame */
+    margin-top: 10px; /* Fixed top positioning */
+  }
+  .magi-card span {
+    font-size: 0.9em;
+  }
+  .chat-window {
+    max-height: 350px;
+    padding: 15px;
+  }
+  .messages {
+    max-height: 250px; /* Adjusted for mobile */
+    display: flex;
+    flex-direction: column-reverse; /* New messages at top */
+  }
+  .input-area {
+    flex-direction: column;
+    gap: 10px;
+  }
+  input[type="text"] {
+    width: 93%;
+  }
+  button {
+    width: 100%;
+    padding: 10px;
+  }
+}
