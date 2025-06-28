@@ -8,23 +8,27 @@
 </head>
 <body>
   <div class="container">
-    <!-- <h1>Voices of the Magi</h1> -->
-    <div class="magi-selector">
-      <div class="magi-card" data-magi="melchior" onclick="selectMagi('melchior')">
-        <img src="images/melchior.png" alt="Melchior Icon">
-        <span>Melchior (Gold)</span>
+    <div class="content-wrapper">
+      <!-- <h1>Voices of the Magi</h1> -->
+      <div class="magi-selector">
+        <div class="magi-card" data-magi="melchior" onclick="selectMagi('melchior')">
+          <img src="images/melchior.png" alt="Melchior Icon">
+          <span>Melchior (Gold)</span>
+        </div>
+        <div class="magi-card" data-magi="caspar" onclick="selectMagi('caspar')">
+          <img src="images/caspar.png" alt="Caspar Icon">
+          <span>Caspar (Frankincense)</span>
+        </div>
+        <div class="magi-card" data-magi="balthazar" onclick="selectMagi('balthazar')">
+          <img src="images/balthazar.png" alt="Balthazar Icon">
+          <span>Balthazar (Myrrh)</span>
+        </div>
       </div>
-      <div class="magi-card" data-magi="caspar" onclick="selectMagi('caspar')">
-        <img src="images/caspar.png" alt="Caspar Icon">
-        <span>Caspar (Frankincense)</span>
-      </div>
-      <div class="magi-card" data-magi="balthazar" onclick="selectMagi('balthazar')">
-        <img src="images/balthazar.png" alt="Balthazar Icon">
-        <span>Balthazar (Myrrh)</span>
+      <div class="chat-window">
+        <div class="messages" id="messages"></div>
       </div>
     </div>
-    <div class="chat-window">
-      <div class="messages" id="messages"></div>
+    <div class="input-window">
       <div class="input-area">
         <input type="text" id="message-input" placeholder="Ask the Magi...">
         <button onclick="sendMessage()">Send</button>

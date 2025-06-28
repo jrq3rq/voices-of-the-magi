@@ -22,6 +22,17 @@ body {
   background: rgba(20, 30, 50, 0.1); /* Darker blue overlay for depth */
   width: 100%; /* Ensure it takes full available width up to max-width */
   box-sizing: border-box; /* Include padding in width calculation */
+  display: flex; /* Use flexbox for vertical stacking */
+  flex-direction: column;
+  min-height: 0; /* Ensure flex children can shrink */
+  height: auto; /* Allow container to adjust height */
+  position: relative; /* For sticky positioning context */
+}
+
+.content-wrapper {
+  flex: 1 1 auto; /* Allow this section to grow and push input-window to bottom */
+  display: flex;
+  flex-direction: column;
 }
 
 h1 {
@@ -114,6 +125,7 @@ h1:hover {
 .magi-card.selected {
   transform: scale(1.05); /* Match hover effect */
   box-shadow: 0 6px 12px rgba(232, 216, 160, 0.4); /* Match hover glow */
+  border-color: rgba(232, 216, 160, 0.8); /* Match user message bubble */
 }
 .magi-card[data-magi="melchior"] { border-color: #d1b870; } /* Muted gold */
 .magi-card[data-magi="melchior"] span { color: #d1b870; }
@@ -150,16 +162,16 @@ h1:hover {
   border: 2px solid #e8d8a0; /* Pale gold border */
   border-radius: 15px;
   padding: 25px;
-  max-height: 450px; /* Increased height */
-  overflow-y: auto;
-  margin-top: 25px;
+  max-height: 250px; /* Limit height to prevent pushing input area */
+  overflow-y: auto; /* Enable scrolling within limit */
+  margin-top: 0; /* Remove margin to align with input area */
+  flex: 0 0 auto; /* Prevent chat window from growing beyond max-height */
 }
 
 .messages {
   margin: 0; /* Remove bottom margin to keep latest at top */
   text-align: left;
-  max-height: 350px; /* Adjusted for balance */
-  overflow-y: auto;
+  overflow-y: auto; /* Allow scrolling within chat-window */
   padding: 10px;
   background: rgba(30, 40, 60, 0.5); /* Soft blue overlay */
   border-radius: 5px;
@@ -185,11 +197,27 @@ h1:hover {
   background: rgba(232, 216, 160, 0.8); /* Lighter cream for user */
 }
 
+.input-window {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.15),
+    rgba(255, 255, 255, 0)
+  );
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 2px solid #e8d8a0; /* Pale gold border */
+  border-radius: 15px;
+  padding: 10px;
+  position: sticky; /* Keep at bottom of container */
+  bottom: 20px; /* Offset from bottom to align with padding */
+  margin-top: 20px; /* Add spacing from chat window */
+}
+
 .input-area {
   display: flex;
   gap: 15px; /* More spacing */
   align-items: center;
-  margin-top: 10px;
+  flex-shrink: 0; /* Prevent input area from being compressed */
 }
 input[type="text"] {
   flex-grow: 1;
@@ -250,13 +278,19 @@ button:hover {
     font-size: 0.9em;
   }
   .chat-window {
-    max-height: 350px;
     padding: 15px;
+    max-height: 250px; /* Limit height on mobile */
+    overflow-y: auto; /* Enable scrolling */
   }
   .messages {
     max-height: 250px; /* Adjusted for mobile */
     display: flex;
     flex-direction: column-reverse; /* New messages at top */
+  }
+  .input-window {
+    position: sticky; /* Keep at bottom of container */
+    bottom: 15px; /* Adjusted offset for mobile padding */
+    margin-top: 20px; /* Add spacing from chat window */
   }
   .input-area {
     flex-direction: column;
