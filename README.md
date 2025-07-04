@@ -10,6 +10,7 @@ voices-of-the-magi/
 │   ├── .env                        # Secrets (xAI API key, Firebase credentials)
 │   ├── package.json                # Dependencies (firebase-functions, dotenv, xAI SDK)
 │   ├── magi/                       # Grok-driven Magi logic (distinct voices)
+│   │   ├── prompts.js              # Specific prompts for each king (Melchior, Caspar, Balthazar)
 │   │   ├── melchior.js             # Wisdom, purpose (Gold)
 │   │   ├── caspar.js               # Awe, spirituality (Frankincense)
 │   │   ├── balthazar.js            # Healing, grief (Myrrh)

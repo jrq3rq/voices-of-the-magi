@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Voices of the Magi</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=1.0"> <!-- Relative path for local server, cache-busting included -->
 </head>
 <body>
   <div class="container">
@@ -12,15 +12,15 @@
       <!-- <h1>Voices of the Magi</h1> -->
       <div class="magi-selector">
         <div class="magi-card" data-magi="melchior" onclick="selectMagi('melchior')">
-          <img src="images/melchior.png" alt="Melchior Icon">
+          <img src="images/melchior.png" alt="Melchior Icon" width="200" height="200">
           <span>Melchior (Gold)</span>
         </div>
         <div class="magi-card" data-magi="caspar" onclick="selectMagi('caspar')">
-          <img src="images/caspar.png" alt="Caspar Icon">
+          <img src="images/caspar.png" alt="Caspar Icon" width="200" height="200">
           <span>Caspar (Frankincense)</span>
         </div>
         <div class="magi-card" data-magi="balthazar" onclick="selectMagi('balthazar')">
-          <img src="images/balthazar.png" alt="Balthazar Icon">
+          <img src="images/balthazar.png" alt="Balthazar Icon" width="200" height="200">
           <span>Balthazar (Myrrh)</span>
         </div>
       </div>
@@ -35,6 +35,15 @@
       </div>
     </div>
   </div>
+
+  <!-- Modal for Rate Limit -->
+  <div id="rateLimitModal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeModal()">×</span>
+      <p id="modalMessage">The celestial limit has been reached. Please try again after 24 hours.</p>
+    </div>
+  </div>
+
   <script src="chat.js"></script>
 </body>
 </html>

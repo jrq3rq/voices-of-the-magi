@@ -8,10 +8,16 @@ body {
   color: #e8d8a0; /* Creamy off-white text */
   overflow-x: hidden;
   line-height: 1.6; /* Improved readability */
-  min-height: 100vh; /* Ensure full viewport height */
+  height: 100vh; /* Full viewport height */
+  min-height: 100vh; /* Ensure full height on all devices */
   display: flex; /* Use flexbox for centering */
   justify-content: center; /* Horizontally center */
   align-items: center; /* Vertically center */
+  /* Mobile viewport fix */
+  @media (max-width: 600px) {
+    height: -webkit-fill-available; /* Fallback for Safari */
+    min-height: -webkit-fill-available; /* Ensure full height */
+  }
 }
 
 .container {
@@ -303,4 +309,44 @@ button:hover {
     width: 100%;
     padding: 10px;
   }
+}
+
+/* Modal Styles */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+  z-index: 1000;
+}
+
+.modal-content {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 2px solid #e8d8a0;
+  border-radius: 15px;
+  width: 80%;
+  max-width: 400px;
+  margin: 10% auto;
+  padding: 20px;
+  text-align: center;
+  color: #e8d8a0;
+  position: relative;
+}
+
+.close-modal {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #e8d8a0;
+}
+
+.close-modal:hover {
+  color: #d1b870;
 }
