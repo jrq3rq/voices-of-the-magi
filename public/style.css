@@ -1,23 +1,28 @@
 body {
   margin: 0;
   font-family: 'Georgia', serif; /* Elegant serif for sacred feel */
-  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('images/starry-night.png');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+  background: linear-gradient(180deg, #1e2a44, #0d1420); /* Dark gradient base */
   color: #e8d8a0; /* Creamy off-white text */
   overflow-x: hidden;
   line-height: 1.6; /* Improved readability */
+  height: 100vh; /* Initial full viewport height */
+  min-height: 100vh; /* Ensure full height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Remove background-attachment: fixed to avoid mobile issues */
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: 100vh; /* Full viewport height */
-  min-height: 100vh; /* Ensure full height on all devices */
-  display: flex; /* Use flexbox for centering */
-  justify-content: center; /* Horizontally center */
-  align-items: center; /* Vertically center */
-  /* Mobile viewport fix */
-  @media (max-width: 600px) {
-    height: -webkit-fill-available; /* Fallback for Safari */
-    min-height: -webkit-fill-available; /* Ensure full height */
-  }
+  background: url('images/starry-night.png') no-repeat center center;
+  background-size: cover;
+  z-index: -1; /* Behind content */
 }
 
 .container {
@@ -26,26 +31,26 @@ body {
   text-align: center;
   border-radius: 15px;
   background: rgba(20, 30, 50, 0.1); /* Darker blue overlay for depth */
-  width: 100%; /* Ensure it takes full available width up to max-width */
-  box-sizing: border-box; /* Include padding in width calculation */
-  display: flex; /* Use flexbox for vertical stacking */
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
   flex-direction: column;
-  min-height: 0; /* Ensure flex children can shrink */
-  height: auto; /* Allow container to adjust height */
-  position: relative; /* For sticky positioning context */
+  min-height: 0;
+  height: auto;
+  position: relative;
 }
 
 .content-wrapper {
-  flex: 1 1 auto; /* Allow this section to grow and push input-window to bottom */
+  flex: 1 1 auto;
   display: flex;
   flex-direction: column;
 }
 
 h1 {
-  font-size: 2.5em; /* Slightly larger for emphasis */
+  font-size: 2.5em;
   margin-bottom: 25px;
   font-weight: 700;
-  transition: transform 0.3s ease; /* Subtle hover effect */
+  transition: transform 0.3s ease;
 }
 h1:hover {
   transform: scale(1.05);
@@ -53,10 +58,10 @@ h1:hover {
 
 .star-map {
   position: relative;
-  height: 180px; /* Increased for better visual impact */
+  height: 180px;
   background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><circle cx="50" cy="50" r="40" fill="%231e2a44"/><path d="M50 10 L60 40 L90 40 L65 55 L75 85 L50 70 L25 85 L35 55 L10 40 L40 40 Z" fill="%23e8d8a0" opacity="0.8"/></svg>') repeat;
   margin-bottom: 25px;
-  animation: twinkle 8s infinite; /* Subtle animation */
+  animation: twinkle 8s infinite;
 }
 
 @keyframes twinkle {
@@ -68,48 +73,44 @@ h1:hover {
   position: absolute;
   top: 20px;
   left: 20px;
-  width: 50px; /* Slightly larger moon */
+  width: 50px;
   height: 50px;
-  background: radial-gradient(circle at 70% 30%, #e8d8a0, #d1b870); /* Soft gold gradient */
+  background: radial-gradient(circle at 70% 30%, #e8d8a0, #d1b870);
   border-radius: 50%;
   animation: glow 6s infinite alternate;
 }
 
 @keyframes glow {
-  0% { /* Removed shadow, keeping animation structure */ }
-  100% { /* Removed shadow, keeping animation structure */ }
+  0% { /* Removed shadow */ }
+  100% { /* Removed shadow */ }
 }
 
 .star {
   position: absolute;
-  width: 6px; /* Slightly larger stars */
+  width: 6px;
   height: 6px;
-  background: radial-gradient(circle, #e8d8a0, #f5f5f5); /* Soft gold to white */
+  background: radial-gradient(circle, #e8d8a0, #f5f5f5);
   border-radius: 50%;
   animation: twinkle 5s infinite alternate;
 }
 .star:nth-child(2) { top: 60px; left: 70px; }
 .star:nth-child(3) { top: 90px; left: 30px; }
 .star:nth-child(4) { top: 110px; right: 50px; }
-.star:nth-child(5) { top: 40px; right: 20px; } /* Added extra star */
+.star:nth-child(5) { top: 40px; right: 20px; }
 
 .magi-selector {
   margin: 25px 0;
   display: flex;
   justify-content: center;
-  gap: 20px; /* Increased spacing for card separation */
-  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
 .magi-card {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.15),
-    rgba(255, 255, 255, 0)
-  );
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
-  border: 2px solid #e8d8a0; /* Pale gold border */
+  border: 2px solid #e8d8a0;
   border-radius: 10px;
   width: 150px;
   height: 250px;
@@ -125,64 +126,60 @@ h1:hover {
   overflow: hidden;
 }
 .magi-card:hover {
-  transform: scale(1.05); /* Slight lift effect */
-  box-shadow: 0 6px 12px rgba(232, 216, 160, 0.4); /* Glow on hover */
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(232, 216, 160, 0.4);
 }
 .magi-card.selected {
-  transform: scale(1.05); /* Match hover effect */
-  box-shadow: 0 6px 12px rgba(232, 216, 160, 0.4); /* Match hover glow */
-  border-color: rgba(232, 216, 160, 0.8); /* Match user message bubble */
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(232, 216, 160, 0.4);
+  border-color: rgba(232, 216, 160, 0.8);
 }
-.magi-card[data-magi="melchior"] { border-color: #d1b870; } /* Muted gold */
+.magi-card[data-magi="melchior"] { border-color: #d1b870; }
 .magi-card[data-magi="melchior"] span { color: #d1b870; }
-.magi-card[data-magi="caspar"] { border-color: #4a704a; } /* Muted sage */
+.magi-card[data-magi="caspar"] { border-color: #4a704a; }
 .magi-card[data-magi="caspar"] span { color: #4a704a; }
-.magi-card[data-magi="balthazar"] { border-color: #a66b4a; } /* Soft terracotta */
+.magi-card[data-magi="balthazar"] { border-color: #a66b4a; }
 .magi-card[data-magi="balthazar"] span { color: #a66b4a; }
 
 .magi-card img {
-  max-width: 200px; /* Fixed max width to scale down */
-  max-height: 200px; /* Fixed max height to scale down */
-  width: auto; /* Preserve aspect ratio */
-  height: auto; /* Preserve aspect ratio */
-  border-radius: 50%; /* Circular frame */
-  margin-top: 10px; /* Fixed top positioning */
+  max-width: 200px;
+  max-height: 200px;
+  width: auto;
+  height: auto;
+  border-radius: 50%;
+  margin-top: 10px;
 }
 
 .magi-card span {
-  font-size: 1em; /* Slightly smaller for balance */
+  font-size: 1em;
   font-weight: 600;
-  color: #e8d8a0; /* Default creamy text */
+  color: #e8d8a0;
   margin-bottom: 10px;
   text-align: center;
 }
 
 .chat-window {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.15),
-    rgba(255, 255, 255, 0)
-  );
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
-  border: 2px solid #e8d8a0; /* Pale gold border */
+  border: 2px solid #e8d8a0;
   border-radius: 15px;
   padding: 25px;
-  max-height: 250px; /* Limit height to prevent pushing input area */
-  overflow-y: auto; /* Enable scrolling within limit */
-  margin-top: 0; /* Remove margin to align with input area */
-  flex: 0 0 auto; /* Prevent chat window from growing beyond max-height */
+  max-height: 250px;
+  overflow-y: auto;
+  margin-top: 0;
+  flex: 0 0 auto;
 }
 
 .messages {
-  margin: 0; /* Remove bottom margin to keep latest at top */
+  margin: 0;
   text-align: left;
-  overflow-y: auto; /* Allow scrolling within chat-window */
+  overflow-y: auto;
   padding: 10px;
-  background: rgba(30, 40, 60, 0.5); /* Soft blue overlay */
+  background: rgba(30, 40, 60, 0.5);
   border-radius: 5px;
   display: flex;
-  flex-direction: column-reverse; /* New messages at top */
+  flex-direction: column-reverse;
 }
 
 .message {
@@ -190,8 +187,8 @@ h1:hover {
   margin: 5px 0;
   border-radius: 5px;
   font-size: 0.95em;
-  color: #e8d8a0; /* Creamy text */
-  background: rgba(44, 54, 74, 0.8); /* Slightly darker chat bubble for king */
+  color: #e8d8a0;
+  background: rgba(44, 54, 74, 0.8);
 }
 
 .user-message {
@@ -199,57 +196,53 @@ h1:hover {
   margin: 5px 0;
   border-radius: 5px;
   font-size: 0.95em;
-  color: #000000; /* Black text for user */
-  background: rgba(232, 216, 160, 0.8); /* Lighter cream for user */
+  color: #000000;
+  background: rgba(232, 216, 160, 0.8);
 }
 
 .input-window {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.15),
-    rgba(255, 255, 255, 0)
-  );
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
-  border: 2px solid #e8d8a0; /* Pale gold border */
+  border: 2px solid #e8d8a0;
   border-radius: 15px;
   padding: 10px;
-  position: sticky; /* Keep at bottom of container */
-  bottom: 20px; /* Offset from bottom to align with padding */
-  margin-top: 20px; /* Add spacing from chat window */
+  position: sticky;
+  bottom: 20px;
+  margin-top: 20px;
 }
 
 .input-area {
   display: flex;
-  gap: 15px; /* More spacing */
+  gap: 15px;
   align-items: center;
-  flex-shrink: 0; /* Prevent input area from being compressed */
+  flex-shrink: 0;
 }
 input[type="text"] {
   flex-grow: 1;
   padding: 12px;
   border-radius: 8px;
-  background: #2a3545; /* Darker blue input */
-  color: #e8d8a0; /* Creamy text */
+  background: #2a3545;
+  color: #e8d8a0;
   font-size: 1em;
   transition: border-color 0.3s;
 }
 input[type="text"]:focus {
-  border-color: #d1b870; /* Muted gold */
+  border-color: #d1b870;
   outline: none;
 }
 button {
   padding: 12px 25px;
   border: none;
-  background: linear-gradient(45deg, #e8d8a0, #d1b870); /* Soft gold gradient */
-  color: #1a2535; /* Dark navy */
+  background: linear-gradient(45deg, #e8d8a0, #d1b870);
+  color: #1a2535;
   border-radius: 8px;
   cursor: pointer;
   font-weight: 600;
   transition: all 0.3s ease;
 }
 button:hover {
-  background: linear-gradient(45deg, #d1b870, #f0e4b0); /* Muted gold to cream */
+  background: linear-gradient(45deg, #d1b870, #f0e4b0);
   transform: scale(1.05);
 }
 
@@ -268,35 +261,35 @@ button:hover {
     align-items: center;
   }
   .magi-card {
-    width: 90%; /* Full width for mobile */
-    height: 200px; /* Adjusted proportions */
+    width: 90%;
+    height: 200px;
     padding: 10px;
   }
   .magi-card img {
-    max-width: 150px; /* Smaller max width for mobile */
-    max-height: 150px; /* Smaller max height for mobile */
-    width: auto; /* Preserve aspect ratio */
-    height: auto; /* Preserve aspect ratio */
-    border-radius: 50%; /* Circular frame */
-    margin-top: 10px; /* Fixed top positioning */
+    max-width: 150px;
+    max-height: 150px;
+    width: auto;
+    height: auto;
+    border-radius: 50%;
+    margin-top: 10px;
   }
   .magi-card span {
     font-size: 0.9em;
   }
   .chat-window {
     padding: 15px;
-    max-height: 250px; /* Limit height on mobile */
-    overflow-y: auto; /* Enable scrolling */
+    max-height: 250px;
+    overflow-y: auto;
   }
   .messages {
-    max-height: 250px; /* Adjusted for mobile */
+    max-height: 250px;
     display: flex;
-    flex-direction: column-reverse; /* New messages at top */
+    flex-direction: column-reverse;
   }
   .input-window {
-    position: sticky; /* Keep at bottom of container */
-    bottom: 15px; /* Adjusted offset for mobile padding */
-    margin-top: 20px; /* Add spacing from chat window */
+    position: sticky;
+    bottom: 15px;
+    margin-top: 20px;
   }
   .input-area {
     flex-direction: column;
@@ -313,13 +306,13 @@ button:hover {
 
 /* Modal Styles */
 .modal {
-  display: none; /* Hidden by default */
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+  background: rgba(0, 0, 0, 0.5);
   z-index: 1000;
 }
 
